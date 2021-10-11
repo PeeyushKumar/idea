@@ -1,29 +1,24 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 const TakeNote = () => {
     
     const [focus, setFocus] = useState(false);
+    const [title, setTitle] = useState("");
+    const [body, setBody] = useState("");
 
+    const handleSubmit = () => {
+
+    }
 
     return (
-        <div
-            className='take-note'
-            onFocus={() => setFocus(true)}
-            onBlur={() => setFocus(false)}
-        >
-            <form>
+            <form className='take-note' onSubmit={handleSubmit}>
                 
-                {
-                    focus &&  <input type="text" placeholder='Title'/>
-                }
+                <input name="title" type="text" id="input-title" placeholder='Title' value={title} onChange={(e)=>setTitle(e.target.value)} />
 
-                <input 
-                    type="text"
-                    placeholder='Take a note...'  
-                />
+                <textarea name="body" id="input-body" placeholder='Take a note...' cols="30" rows="3" value={body} onChange={(e)=>setBody(e.target.value)}></textarea>
 
+                <button type="submit">Save</button>
             </form>
-        </div>
     )
 }
 
