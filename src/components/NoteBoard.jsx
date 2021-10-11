@@ -1,6 +1,8 @@
+import { useState, useEffect } from "react";
 import NoteColumn from "./NoteColumn";
 import TakeNote from "./TakeNote";
-const NoteBoard = ({columns}) => {
+
+const NoteBoard = () => {
 
     let data = [
         {
@@ -31,24 +33,37 @@ const NoteBoard = ({columns}) => {
             title: 'Dream of wonderland',
             body: 'my drean beautifdul and powerful'
         },
-    ]    
+    ]
 
+    const [notes, setNotes] = useState([]);
 
-    const rows = Math.ceil(data.length / columns);
+    useEffect(() => {
+  
+      const calculateColumns = () => {
+        const noteWidth = 220;
+        const margin = 20;
+
+        const columns = Math.min(5, Math.floor(window.innerWidth / (noteWidth+margin)));
+        
+        const tempNotes = [];
+        for (let i=0; i<columns; i++) {tempNotes.push([]);}
+        data.forEach((note, index) => tempNotes[index % columns].push(note));
+  
+        setNotes(tempNotes);
+
+        const r = document.querySelector(':root');
+        r.style.setProperty('--note-width', `${noteWidth}px`);
+      }
+  
+      window.addEventListener('resize', calculateColumns);
+      calculateColumns();
+
+    }, []);
     
-    const notes = [];
-    for (let i=0; i<columns; i++) {
-        notes.push(new Array());
-    }
-
-    data.forEach((note, index) => {
-        let i = index % columns;
-        notes[i].push(note);
-    })
 
     return (
         <div className='note-board'>
-              <TakeNote />
+            <TakeNote />
 
             <div className='note-container'>
                 { notes.map(column => <NoteColumn column={column} ></NoteColumn>) }
