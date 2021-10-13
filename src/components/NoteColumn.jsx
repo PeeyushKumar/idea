@@ -5,7 +5,7 @@ const NoteColumn = ({column}) => {
     return (
         <div className='note-column'>
 
-            {column.map((note, i) => <Note key={i} {...note} ></Note>)}         
+            {column.map(note => <Note key={note.id} {...note} ></Note>)}         
               
         </div>
     )

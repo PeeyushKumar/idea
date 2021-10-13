@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import NoteColumn from "./NoteColumn";
 import TakeNote from "./TakeNote";
 
-const NoteBoard = ({data}) => {
+const NoteBoard = ({data, loading}) => {
 
     const [notes, setNotes] = useState([]);
 
@@ -35,10 +35,12 @@ const NoteBoard = ({data}) => {
     return (
         <div className='note-board'>
             <TakeNote />
-
-            <div className='note-container'>
-                { notes.map((column, i) => <NoteColumn key={i} column={column} ></NoteColumn>) }
-            </div>
+            {
+              data.length === 0 ? <p>Loading...</p> :
+              <div className='note-container'>
+                  { notes.map((column, i) => <NoteColumn key={i} column={column} ></NoteColumn>) }
+              </div>
+            }
         </div>
     )
 }
