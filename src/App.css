@@ -92,6 +92,7 @@
 }
 
 .note {    
+    position: relative;
     border: 1px solid #dedede;
     width: var(--note-width);
     height: fit-content;
@@ -125,4 +126,15 @@
     .note-board {
         margin-top: 70px;
     }
+}
+
+.btn-trash {
+    position: absolute;
+    right: 5px;
+    top: 5px;
+    color: #555;
+}
+
+.btn-trash :hover {
+    color: #222;
 }

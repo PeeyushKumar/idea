@@ -22,7 +22,6 @@ const NoteBoard = ({data}) => {
 
         const r = document.querySelector(':root');
         let noteWidthCSS = columns === 1 ? '100%' : `${noteWidth}px`;
-        console.log(noteWidthCSS)
         r.style.setProperty('--note-width', noteWidthCSS);
       }
   
