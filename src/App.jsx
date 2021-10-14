@@ -19,7 +19,7 @@ const App = () => {
 , []);
 
   useEffect(() => {
-    const newData = data.filter(note => searchText ? note.title.includes(searchText) || note.body.includes(searchText) : true);
+    const newData = data.filter(note => searchText ? note.title.toLowerCase().includes(searchText.toLowerCase()) || note.body.includes(searchText) : true);
     setFilteredData(newData);
   } ,[searchText, data]);
 
