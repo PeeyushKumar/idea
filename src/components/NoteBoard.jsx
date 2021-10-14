@@ -31,7 +31,6 @@ const NoteBoard = ({data}) => {
 
     }, [data]);
     
-
     return (
         <div className='note-board'>
             <TakeNote />
