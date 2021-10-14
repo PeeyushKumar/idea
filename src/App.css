@@ -5,6 +5,36 @@
     box-sizing: border-box;
 }
 
+.nav {
+    height: 100px;
+    background-color: #333;
+    color: white;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.nav .logo {
+    flex: 1;
+    margin-left: 5rem;
+}
+
+.nav .nav-list {
+    margin: 0rem 5rem;
+    font-size: 1.5rem;
+    display: flex;
+    list-style: none;
+}
+
+.nav a {
+    text-decoration: none;
+    margin-right: 2rem;
+    border-radius: 10px;
+    padding: 0.5rem 1rem;
+    color: white;
+}
+
+
 .take-note {
     display: flex;
     flex-direction: column;
@@ -38,16 +68,16 @@
     width: 70px;
     padding: 10px;
     font-size: 1rem;
-    border: coral solid 1px;
+    border: #333 solid 1px;
     border-radius: 10px;
-    background-color: coral;
+    background-color: #333;
     color: white;
 }
 
 
 .take-note button:hover {
-    border: rgb(255, 96, 38) solid 1px;
-    background-color: rgb(255, 96, 38) ;
+    border: #222 solid 1px;
+    background-color: #222 ;
 }
 
 .note-board {
@@ -56,7 +86,7 @@
     justify-content: center;
     align-items: center;
 
-    border: dotted red 1px;
+    /* border: dotted red 1px; */
 }
 
 .note-container {
@@ -64,7 +94,7 @@
     justify-content: space-evenly;
     margin: 1rem;
 
-    border: dotted red 1px;
+    /* border: dotted red 1px; */
 }
 
 .note-column {
@@ -73,7 +103,7 @@
     align-items: center;
     margin: 0 0.5rem;
 
-    border: dotted red 1px;
+    /* border: dotted red 1px; */
 }
 
 .note {    
