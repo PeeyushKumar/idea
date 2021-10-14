@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import NoteColumn from "./NoteColumn";
 import TakeNote from "./TakeNote";
 
-const NoteBoard = ({data, loading}) => {
+const NoteBoard = ({data}) => {
 
     const [notes, setNotes] = useState([]);
 

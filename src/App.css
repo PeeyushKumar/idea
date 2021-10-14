@@ -14,6 +14,13 @@
     align-items: center;
 }
 
+.search-bar {
+    font-size: 1rem;
+    padding: 0.5rem;
+    border-radius: 10px;
+    outline: none;
+}
+
 .nav .logo {
     flex: 1;
     margin-left: 5rem;

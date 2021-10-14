@@ -8,6 +8,8 @@ import Nav from './components/Nav';
 const App = () => {
 
   const [data, setData] = useState([]);
+  const [searchText, setSearchText] = useState("");
+  const [filteredData, setFilteredData] = useState([]);
 
   useEffect(() => (
       onSnapshot( collection(db, "ideas"), snapshot => {
@@ -16,10 +18,15 @@ const App = () => {
   )
 , []);
 
+  useEffect(() => {
+    const newData = data.filter(note => searchText ? note.title.includes(searchText) || note.body.includes(searchText) : true);
+    setFilteredData(newData);
+  } ,[searchText, data]);
+
   return (
     <div className="App">
-      <Nav></Nav>
-      <NoteBoard data={data}/>
+      <Nav searchText={searchText} setSearchText={setSearchText} />
+      <NoteBoard data={filteredData}/>
     </div>
   );
 }
