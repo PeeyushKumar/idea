@@ -12,16 +12,19 @@ const TakeNote = () => {
 
         if (!title && !body) return;
 
+        const tempTitle = title;
+        const tempBody = body;
+        setTitle("");
+        setBody("");
+
         try {
-            const docRef = await addDoc(collection(db, "ideas"), {
-                title,
-                body,
+            addDoc(collection(db, "ideas"), {
+                title: tempTitle,
+                body: tempBody,
+                color: "White"
             });
         } catch (e) {
             console.error("Error adding document: ", e);
-        } finally {
-            setTitle("");
-            setBody("");
         }
     }
 
