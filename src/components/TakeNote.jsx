@@ -15,7 +15,7 @@ const TakeNote = () => {
         try {
             const docRef = await addDoc(collection(db, "ideas"), {
                 title,
-                body
+                body,
             });
         } catch (e) {
             console.error("Error adding document: ", e);

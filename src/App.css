@@ -7,6 +7,7 @@
 
 .nav {
     position: fixed;
+    z-index: 1;
     top: 0;
     left: 0;
     width: 100%;
@@ -26,11 +27,7 @@
 }
 
 .take-note {
-    display: flex;
-    flex-direction: column;
-
     border: 1px solid #dedede;
-    min-width: 300px;
     border-radius: 10px;
     padding: 0.9rem;
     box-shadow: 0 0.1rem 0.4rem  #aaa;
@@ -46,8 +43,9 @@
 }
 
 .take-note #input-body {
+    width: 100%;
     font-size: 1rem;
-    font-weight: 400;
+    font-weight: 600;
     color: #555;
     border: none;
     outline: none;
@@ -137,4 +135,101 @@
 
 .btn-trash :hover {
     color: #222;
+}
+
+.btn-palette {
+    position: absolute;
+    bottom: 5px;
+    right: 5px;
+    color: #555;
+}
+
+.btn-palette :hover {
+    color: #222;
+}
+
+.color-pad {
+    position: absolute;
+    bottom: 0px;
+    right: 0px;
+    width: 2rem;
+    height: 2rem;
+    border-radius: 1rem;
+    z-index: 1;
+    border: 3px #555 solid;
+}
+
+.color1 {
+    animation: color1-pop 0.2s ease-out forwards;
+}
+
+@keyframes color1-pop {
+    from {
+        transform: translateX(0px) translateY(0px);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(-40px) translateY(30px);
+        opacity: 1;
+    }
+}
+
+.color2 {
+    animation: color2-pop 0.2s ease-out forwards;
+}
+
+@keyframes color2-pop {
+    from {
+        transform: translateX(0px) translateY(0px);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(-47px) translateY(-4px);
+        opacity: 1;
+    }
+}
+
+.color3 {
+    animation: color3-pop 0.2s ease-out forwards;
+}
+
+@keyframes color3-pop {
+    from {
+        transform: translateX(0px) translateY(0px);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(-38px) translateY(-38px);
+        opacity: 1;
+    }
+}
+
+.color4 {
+    animation: color4-pop 0.2s ease-out forwards;
+}
+
+@keyframes color4-pop {
+    from {
+        transform: translateX(0px) translateY(0px);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(-4px) translateY(-47px);
+        opacity: 1;
+    }
+}
+
+.color5 {
+    animation: color5-pop 0.2s ease-out forwards;
+}
+
+@keyframes color5-pop {
+    from {
+        transform: translateX(0px) translateY(0px);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(30px) translateY(-40px);
+        opacity: 1;
+    }
 }
