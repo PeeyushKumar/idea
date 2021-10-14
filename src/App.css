@@ -6,6 +6,10 @@
 }
 
 .nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
     height: 100px;
     background-color: #333;
     color: white;
@@ -20,27 +24,6 @@
     border-radius: 10px;
     outline: none;
 }
-
-.nav .logo {
-    flex: 1;
-    margin-left: 5rem;
-}
-
-.nav .nav-list {
-    margin: 0rem 5rem;
-    font-size: 1.5rem;
-    display: flex;
-    list-style: none;
-}
-
-.nav a {
-    text-decoration: none;
-    margin-right: 2rem;
-    border-radius: 10px;
-    padding: 0.5rem 1rem;
-    color: white;
-}
-
 
 .take-note {
     display: flex;
@@ -88,20 +71,17 @@
 }
 
 .note-board {
+    margin-top: 100px;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-
-    /* border: dotted red 1px; */
 }
 
 .note-container {
     display: flex;
     justify-content: space-evenly;
     margin: 1rem;
-
-    /* border: dotted red 1px; */
 }
 
 .note-column {
@@ -109,8 +89,6 @@
     flex-direction: column;
     align-items: center;
     margin: 0 0.5rem;
-
-    /* border: dotted red 1px; */
 }
 
 .note {    
@@ -135,4 +113,16 @@
 
 .note .body {
     pointer-events: none;
+}
+
+@media screen and (max-width:600px) {
+    .nav {
+        height: 70px;
+    }
+    .nav .search-bar {
+        display: none;
+    }
+    .note-board {
+        margin-top: 70px;
+    }
 }

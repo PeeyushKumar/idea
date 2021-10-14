@@ -15,15 +15,15 @@ const NoteBoard = ({data}) => {
 
         const columns = Math.max(1, Math.min(maxColumns, Math.floor(window.innerWidth / (noteWidth+margin))));
         
-        
         const tempNotes = [];
         for (let i=0; i<columns; i++) {tempNotes.push([]);}
         data.forEach((note, index) => tempNotes[index % columns].push(note));
-  
         setNotes(tempNotes);
 
         const r = document.querySelector(':root');
-        r.style.setProperty('--note-width', `${noteWidth}px`);
+        let noteWidthCSS = columns === 1 ? '100%' : `${noteWidth}px`;
+        console.log(noteWidthCSS)
+        r.style.setProperty('--note-width', noteWidthCSS);
       }
   
       window.addEventListener('resize', calculateColumns);
