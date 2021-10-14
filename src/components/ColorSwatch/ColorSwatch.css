@@ -1,0 +1,55 @@
+
+.btn-palette {
+    position: absolute;
+    bottom: 5px;
+    right: 5px;
+    color: #555;
+}
+
+.btn-palette :hover {
+    color: #222;
+}
+
+.color-pad {
+    position: absolute;
+    bottom: 0px;
+    right: 0px;
+    width: 2rem;
+    height: 2rem;
+    border-radius: 1rem;
+    pointer-events: none;
+    border: 3px #555 solid;
+    transition-duration: 0.3s;
+    z-index: 1;
+    opacity: 0;
+}
+
+.color-open-1 {
+    transform: translateX(-40px) translateY(30px);
+    opacity: 1;
+    pointer-events: all;
+}
+
+.color-open-2 {
+    transform: translateX(-47px) translateY(-3px);
+    opacity: 1;
+    pointer-events: all;
+}
+
+.color-open-3 {
+    transform: translateX(-36px) translateY(-36px);
+    opacity: 1;
+    pointer-events: all;
+}
+
+.color-open-4 {
+    transform: translateX(-3px) translateY(-47px);
+    opacity: 1;
+    pointer-events: all;
+}
+
+.color-open-5 {
+    transform: translateX(30px) translateY(-40px);
+    opacity: 1;
+    pointer-events: all;
+}
