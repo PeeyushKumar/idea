@@ -18,9 +18,6 @@ const Note = ({id, title, body, color}) => {
     } 
 
     const handleColorSwatchClick = () => {
-        if (!colorPicking) {
-            // setTimeout(() => setColorPicking(false), 1000);
-        }
         setColorPicking(!colorPicking);
     }
 

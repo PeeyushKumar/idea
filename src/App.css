@@ -184,7 +184,7 @@
         opacity: 0;
     }
     to {
-        transform: translateX(-47px) translateY(-4px);
+        transform: translateX(-47px) translateY(-3px);
         opacity: 1;
     }
 }
@@ -199,7 +199,7 @@
         opacity: 0;
     }
     to {
-        transform: translateX(-38px) translateY(-38px);
+        transform: translateX(-36px) translateY(-36px);
         opacity: 1;
     }
 }
@@ -214,7 +214,7 @@
         opacity: 0;
     }
     to {
-        transform: translateX(-4px) translateY(-47px);
+        transform: translateX(-3px) translateY(-47px);
         opacity: 1;
     }
 }
