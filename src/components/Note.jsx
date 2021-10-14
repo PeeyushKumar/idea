@@ -13,6 +13,8 @@ const Note = ({id, title, body}) => {
             className='note'
             onMouseOver={() => sethovering(true)}
             onMouseLeave={() => sethovering(false)}
+            draggable={true}
+            onDragStart={event => event.preventDefault()}
         >
 
             {

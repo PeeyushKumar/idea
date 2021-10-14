@@ -26,7 +26,7 @@ const App = () => {
   return (
     <div className="App">
       <Nav searchText={searchText} setSearchText={setSearchText} />
-      <NoteBoard data={filteredData}/>
+      <NoteBoard filteredData={filteredData} />
     </div>
   );
 }
