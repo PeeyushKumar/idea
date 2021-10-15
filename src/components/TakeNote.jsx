@@ -1,5 +1,5 @@
-import { collection, addDoc } from "@firebase/firestore";
 import { useState } from "react";
+import { collection, addDoc } from "@firebase/firestore";
 import db from "../firebase";
 
 const TakeNote = () => {

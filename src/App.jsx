@@ -1,9 +1,9 @@
-import { collection, onSnapshot } from '@firebase/firestore';
 import { useEffect, useState } from 'react';
-import './App.css';
-import NoteBoard from './components/NoteBoard';
+import { collection, onSnapshot } from '@firebase/firestore';
 import db from './firebase';
+import NoteBoard from './components/NoteBoard';
 import Nav from './components/Nav';
+import './App.css';
 
 const App = () => {
 
