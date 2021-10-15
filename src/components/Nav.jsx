@@ -4,7 +4,11 @@ const Nav = ({searchText, setSearchText}) => {
 
     return (
         <div className="nav">
-            <h1 className="logo">Idea</h1>
+            
+            <div className="logo">
+                <h1>Idea</h1>
+                <img src="idea/assets/splash.png" alt="bg" className="splash" />
+            </div>
             <SearchBar searchText={searchText} setSearchText={setSearchText}/>
         </div>
     );
