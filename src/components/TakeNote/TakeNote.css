@@ -1,0 +1,64 @@
+
+.take-note {
+    z-index: 1;
+    background: white;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translateX(-50%) translateY(-50%);
+    border: 1px solid #dedede;
+    border-radius: 10px;
+    padding: 0.9rem;
+    box-shadow: 0 0.1rem 0.4rem #aaa;
+    margin: auto;
+}
+
+.take-note #input-title {
+    width: 100%;
+    font-size: 1rem;
+    font-weight: 500;
+    color: #333;
+    border: none;
+    outline: none;
+}
+
+.take-note #input-body {
+    width: 100%;
+    font-size: 1rem;
+    font-weight: 600;
+    color: #555;
+    border: none;
+    outline: none;
+    margin: 1rem 0;
+    height: 130px;
+    overflow: hidden;
+
+}
+
+.take-note button {
+    width: 70px;
+    padding: 10px;
+    font-size: 1rem;
+    border: #333 solid 1px;
+    border-radius: 10px;
+    background-color: #333;
+    color: white;
+}
+
+.take-note button:hover {
+    border: #222 solid 1px;
+    background-color: #222 ;
+}
+
+.take-note .close-btn {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 1.5rem;
+}
+
+@media screen and (max-width:600px) {
+    .take-note {
+        width: 90%;
+    }
+}

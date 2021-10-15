@@ -1,10 +1,13 @@
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faFeatherAlt } from "@fortawesome/free-solid-svg-icons";
 import { useState, useEffect } from "react";
 import NoteColumn from "./NoteColumn";
-import TakeNote from "./TakeNote";
+import TakeNote from "./TakeNote/TakeNote";
 
 const NoteBoard = ({filteredData}) => {
 
     const [notes, setNotes] = useState([]);
+    const [takeNoteVisible, setTakeNoteVisible] = useState(false);
 
     useEffect(() => {
   
@@ -36,18 +39,36 @@ const NoteBoard = ({filteredData}) => {
   
     return (
         <div className='note-board'>
-            <TakeNote />
             {
-              filteredData.length === 0 ? <p>Loading...</p> :
-              <div className='note-container'>
-                  { notes.map((column, columnIndex) =>
-                    <NoteColumn
-                      key={columnIndex}
-                      column={column}
-                    />
-                  )}
-              </div>
+              takeNoteVisible &&
+              <TakeNote setTakeNoteVisible={setTakeNoteVisible} />
             }
+
+            <div
+              style={{
+                filter: takeNoteVisible?"blur(3px)":"none",
+                pointerEvents: takeNoteVisible?"none":"all",
+              }}
+            >
+              {
+                <div className="new-note-btn" onClick={() => setTakeNoteVisible(true)}>
+                  <FontAwesomeIcon icon={faFeatherAlt}/>
+                </div>
+              }
+
+              {
+                filteredData.length === 0 ? <p>Loading...</p> :
+                <div className='note-container'>
+                    { notes.map((column, columnIndex) =>
+                      <NoteColumn
+                        key={columnIndex}
+                        column={column}
+                      />
+                    )}
+                </div>
+              }
+
+            </div>
         </div>
     )
 }
