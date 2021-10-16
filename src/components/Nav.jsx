@@ -6,8 +6,8 @@ const Nav = ({searchText, setSearchText}) => {
         <div className="nav">
             
             <div className="logo">
-                <h1>Idea</h1>
-                <img src="assets/splash.png" alt="bg" className="splash" />
+                <h1 style={{userSelect:"none", pointerEvents:"none"}} >Idea</h1>
+                <img style={{userSelect:"none", pointerEvents:"none"}} src="assets/splash.png" alt="Logo" className="splash" />
             </div>
             <SearchBar searchText={searchText} setSearchText={setSearchText}/>
         </div>
