@@ -1,13 +1,19 @@
+:root {
+    --primary-dark: #3c28d0;
+    --primary-light: #4d3ae3;
+    --secondary-dark: #0b0d1b;
+    --secondary-light: #4a4c5e;
+}
 
 .btn-palette {
     position: absolute;
     bottom: 10px;
     right: 10px;
-    color: #555;
+    color: var(--secondary-light);
 }
 
 .btn-palette :hover {
-    color: #222;
+    color: var(--secondary-dark);
 }
 
 .color-pad {
@@ -18,7 +24,7 @@
     height: 2rem;
     border-radius: 1rem;
     pointer-events: none;
-    border: 3px #555 solid;
+    border: 3px var(--secondary-light) solid;
     transition-duration: 0.3s;
     z-index: 1;
     opacity: 0;
