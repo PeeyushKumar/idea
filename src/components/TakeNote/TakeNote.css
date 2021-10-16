@@ -12,10 +12,9 @@
     top: 50%;
     left: 50%;
     transform: translateX(-50%) translateY(-50%);
-    border: 1px solid #dedede;
     border-radius: 10px;
     padding: 0.9rem;
-    box-shadow: 0 0.1rem 0.4rem #aaa;
+    box-shadow: 0 0.1rem 10rem 3rem rgba(0, 0, 0, 0.5);
     margin: auto;
 }
 
