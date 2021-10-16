@@ -1,5 +1,5 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faFeatherAlt } from "@fortawesome/free-solid-svg-icons";
+import { faFeatherAlt, faGhost } from "@fortawesome/free-solid-svg-icons";
 import { useState, useEffect } from "react";
 import NoteColumn from "./NoteColumn";
 import TakeNote from "./TakeNote/TakeNote";
@@ -59,7 +59,10 @@ const NoteBoard = ({filteredData}) => {
               }
 
               {
-                filteredData.length === 0 ? <p>Loading...</p> :
+                filteredData.length === 0 ?
+                
+                <FontAwesomeIcon icon={faGhost} style={{position:"absolute", top:"50%", left:"50%", transform:"translateX(-50%) translateY(-50%)", fontSize:"20rem", color:"#dedede"}}/> :
+                
                 <div className='note-container'>
                     { notes.map((column, columnIndex) =>
                       <NoteColumn

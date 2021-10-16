@@ -133,6 +133,16 @@ textarea {
     color: var(--secondary-light);
 }
 
+.no-data {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translateX(-50%) translateY(-50%);
+    color: #ccc;
+    font-weight: 200;
+    font-size: 6rem;
+}
+
 @media screen and (max-width:800px) {
     .nav {
         height: 70px;

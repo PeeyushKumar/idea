@@ -7,7 +7,7 @@ import './App.css';
 
 const App = () => {
 
-  const [data, setData] = useState([]);
+  const [data, setData] = useState(null);
   const [searchText, setSearchText] = useState("");
   const [filteredData, setFilteredData] = useState([]);
 
@@ -19,14 +19,21 @@ const App = () => {
 , []);
 
   useEffect(() => {
-    const newData = data.filter(note => searchText ? note.title.toLowerCase().includes(searchText.toLowerCase()) || note.body.includes(searchText) : true);
-    setFilteredData(newData);
+    if (data) {
+      const newData = data.filter(note => searchText ? note.title.toLowerCase().includes(searchText.toLowerCase()) || note.body.includes(searchText) : true);
+      setFilteredData(newData);
+    }
   } ,[searchText, data]);
 
   return (
     <div className="App">
       <Nav searchText={searchText} setSearchText={setSearchText} />
-      <NoteBoard filteredData={filteredData} />
+      {
+        data ?
+        <NoteBoard filteredData={filteredData} /> :
+        <h1 className="no-data">Loading</h1>
+      }
+      
     </div>
   );
 }
