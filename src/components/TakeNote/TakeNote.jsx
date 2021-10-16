@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { collection, addDoc } from "@firebase/firestore";
 import db from "../../firebase";
 import "./TakeNote.css"
@@ -12,6 +12,11 @@ const TakeNote = ({setTakeNoteVisible}) => {
     const [body, setBody] = useState("");
     const [color, setColor] = useState("White");
 
+    const [titleHeight, setTitleHeight] = useState("30px");
+    const [bodyHeight, setBodyHeight] = useState("100px");
+    
+    const titleRef = useRef();
+    const bodyRef = useRef();
 
     const handleOnClose = () => {
         setTakeNoteVisible(false);
@@ -43,6 +48,16 @@ const TakeNote = ({setTakeNoteVisible}) => {
         }
     }
 
+    const handleTitleChange = event => {
+        setTitle(event.target.value);
+        setTitleHeight(`${titleRef.current.scrollHeight}px`);
+    }
+
+    const handleBodyChange = event => {
+        setBody(event.target.value);
+        setBodyHeight(`${bodyRef.current.scrollHeight}px`);
+    }
+
     const handleChangeColor = newColor => {
         setColor(newColor);
     }
@@ -50,9 +65,9 @@ const TakeNote = ({setTakeNoteVisible}) => {
     return (
         
         <form className='take-note' onSubmit={(event) => handleSubmit(event)} style={{background: color}}>
-            <FontAwesomeIcon icon={faTimesCircle} className="close-btn" onClick={handleOnClose}/>
-            <input name="title" type="text" id="input-title" placeholder='Title' value={title} onChange={(e)=>setTitle(e.target.value)} />
-            <textarea name="body" id="input-body" placeholder='Take a note...' cols="30" rows="3" value={body} onChange={(e)=>setBody(e.target.value)}></textarea>
+            <FontAwesomeIcon icon={faTimesCircle} className="close-btn" onClick={handleOnClose}/>            
+            <textarea ref={titleRef} className="input-title" rows="1" placeholder='Title' value={title} style={{height:titleHeight}} onChange={handleTitleChange}></textarea>
+            <textarea ref={bodyRef} className="input-body" rows="3" placeholder='Take a note...' value={body} style={{height:bodyHeight}} onInput={handleBodyChange}></textarea>
             <button type="submit">Save</button>
             <ColorSwatch color={color} handleChangeColor={handleChangeColor}/>
         </form>

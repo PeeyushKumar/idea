@@ -93,12 +93,38 @@ body {
     width: 90%;
     font-weight: 600;
     margin: 0 0 0.8rem 0;
+    white-space: pre-wrap;
     pointer-events: none;
 }
 
 .note .body {
     white-space: pre-wrap;
     pointer-events: none;
+}
+
+textarea {
+    width: 100%;
+    font-size: inherit;
+    resize: none;
+    border: none;
+    outline: none;
+    background: none;
+    overflow: hidden;
+}
+
+.input-title {
+    color: var(--secondary-dark);
+    font-weight: 600;
+    margin: 0 0 0.8rem 0;
+    font-size: inherit;
+    font-family: inherit;
+}
+
+.input-body {
+    color: var(--secondary-light);
+    font-weight: 600;
+    font-size: inherit;
+    font-family: inherit;
 }
 
 @media screen and (max-width:800px) {
@@ -147,3 +173,15 @@ body {
     background-color: var(--secondary-dark);
     color: var(--primary-dark);   
 }
+
+.check-btn {
+    position: absolute;
+    bottom: 10px;
+    right: 50px;
+    color: var(--secondary-light);
+}
+
+.check-btn :hover {
+    color: var(--secondary-dark);
+}
+

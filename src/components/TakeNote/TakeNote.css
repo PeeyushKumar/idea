@@ -18,29 +18,6 @@
     margin: auto;
 }
 
-.take-note #input-title {
-    width: 100%;
-    font-size: 1rem;
-    font-weight: 500;
-    color: var(--secondary-light);
-    border: none;
-    outline: none;
-    background: none;
-}
-
-.take-note #input-body {
-    width: 100%;
-    font-size: 1rem;
-    font-weight: 600;
-    color: var(--secondary-light);
-    border: none;
-    outline: none;
-    margin: 1rem 0;
-    height: 130px;
-    overflow: hidden;
-    background: none;
-}
-
 .take-note button {
     width: 70px;
     padding: 10px;
