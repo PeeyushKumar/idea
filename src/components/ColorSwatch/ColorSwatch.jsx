@@ -13,7 +13,7 @@ const colors = {
     color5: "#AE98FF"
 }
 
-const ColorSwatch = ({id}) => {
+const ColorSwatch = ({handleChangeColor}) => {
 
     const [swatchOpen, setSwatchOpen] = useState(false);
 
@@ -21,10 +21,9 @@ const ColorSwatch = ({id}) => {
         setSwatchOpen(!swatchOpen);
     }
 
-    const changeColor = color => {
+    const handleOnClick = color => {
         setSwatchOpen(false);
-        const noteRef = doc(db, 'ideas', id);
-        setDoc(noteRef, { color: color}, {merge: true});
+        handleChangeColor(color);
     }
 
     let className = "color-pad ";
@@ -36,11 +35,11 @@ const ColorSwatch = ({id}) => {
 
             { 
                 <>
-                    <div className={className+'-1'} style={{backgroundColor: colors.color1}} onClick={() => changeColor(colors.color1)}></div>
-                    <div className={className+'-2'} style={{backgroundColor: colors.color2}} onClick={() => changeColor(colors.color2)}></div>
-                    <div className={className+'-3'} style={{backgroundColor: colors.color3}} onClick={() => changeColor(colors.color3)}></div>
-                    <div className={className+'-4'} style={{backgroundColor: colors.color4}} onClick={() => changeColor(colors.color4)}></div>
-                    <div className={className+'-5'} style={{backgroundColor: colors.color5}} onClick={() => changeColor(colors.color5)}></div>
+                    <div className={className+'-1'} style={{backgroundColor: colors.color1}} onClick={() => handleOnClick(colors.color1)}></div>
+                    <div className={className+'-2'} style={{backgroundColor: colors.color2}} onClick={() => handleOnClick(colors.color2)}></div>
+                    <div className={className+'-3'} style={{backgroundColor: colors.color3}} onClick={() => handleOnClick(colors.color3)}></div>
+                    <div className={className+'-4'} style={{backgroundColor: colors.color4}} onClick={() => handleOnClick(colors.color4)}></div>
+                    <div className={className+'-5'} style={{backgroundColor: colors.color5}} onClick={() => handleOnClick(colors.color5)}></div>
                 </>
             }
         </>

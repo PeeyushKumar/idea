@@ -1,6 +1,6 @@
 import { useState } from "react";
 import db from '../firebase';
-import { doc, deleteDoc } from "firebase/firestore";
+import { doc, deleteDoc, setDoc } from "firebase/firestore";
 import ColorSwatch from "./ColorSwatch/ColorSwatch";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTrash } from "@fortawesome/free-solid-svg-icons";
@@ -13,6 +13,11 @@ const Note = ({id, title, body, color}) => {
     const deleteNote = id => {
         setOpacity(0);
         setTimeout(() => deleteDoc(doc(db, 'ideas', id)), 200);        
+    }
+
+    const handleChangeColor = newColor => {
+        const noteRef = doc(db, 'ideas', id);
+        setDoc(noteRef, { color: newColor}, {merge: true});
     }
 
     return (
@@ -42,7 +47,7 @@ const Note = ({id, title, body, color}) => {
 
             {
                 hovering && 
-                <ColorSwatch id={id} />
+                <ColorSwatch handleChangeColor={handleChangeColor} />
             }
 
         </div>
