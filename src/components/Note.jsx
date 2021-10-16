@@ -47,7 +47,7 @@ const Note = ({id, title, body, color}) => {
 
             {
                 hovering && 
-                <ColorSwatch handleChangeColor={handleChangeColor} />
+                <ColorSwatch color={color} handleChangeColor={handleChangeColor} />
             }
 
         </div>

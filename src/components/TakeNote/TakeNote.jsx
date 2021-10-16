@@ -54,7 +54,7 @@ const TakeNote = ({setTakeNoteVisible}) => {
             <input name="title" type="text" id="input-title" placeholder='Title' value={title} onChange={(e)=>setTitle(e.target.value)} />
             <textarea name="body" id="input-body" placeholder='Take a note...' cols="30" rows="3" value={body} onChange={(e)=>setBody(e.target.value)}></textarea>
             <button type="submit">Save</button>
-            <ColorSwatch handleChangeColor={handleChangeColor}/>
+            <ColorSwatch color={color} handleChangeColor={handleChangeColor}/>
         </form>
     )
 }

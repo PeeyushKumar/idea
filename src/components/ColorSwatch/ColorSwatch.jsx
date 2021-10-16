@@ -1,6 +1,4 @@
 import { useState } from "react";
-import db from '../../firebase';
-import { doc, setDoc } from "firebase/firestore";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPalette } from "@fortawesome/free-solid-svg-icons";
 import "./ColorSwatch.css";
@@ -13,7 +11,7 @@ const colors = {
     color5: "#AE98FF"
 }
 
-const ColorSwatch = ({handleChangeColor}) => {
+const ColorSwatch = ({color, handleChangeColor}) => {
 
     const [swatchOpen, setSwatchOpen] = useState(false);
 
@@ -21,9 +19,11 @@ const ColorSwatch = ({handleChangeColor}) => {
         setSwatchOpen(!swatchOpen);
     }
 
-    const handleOnClick = color => {
+    const handleOnClick = newColor => {
         setSwatchOpen(false);
-        handleChangeColor(color);
+        if (color !== newColor) {
+            handleChangeColor(newColor);
+        }
     }
 
     let className = "color-pad ";
