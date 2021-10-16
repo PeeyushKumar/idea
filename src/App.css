@@ -115,16 +115,22 @@ textarea {
 .input-title {
     color: var(--secondary-dark);
     font-weight: 600;
-    margin: 0 0 0.8rem 0;
+    margin: 0 0 0.6rem 0;
     font-size: inherit;
     font-family: inherit;
 }
 
 .input-body {
     color: var(--secondary-light);
-    font-weight: 600;
+    font-weight: 400;
     font-size: inherit;
     font-family: inherit;
+    color: inherit;
+}
+
+.empty-note {
+    font-weight: 400;
+    color: var(--secondary-light);
 }
 
 @media screen and (max-width:800px) {

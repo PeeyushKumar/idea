@@ -1,6 +1,6 @@
 import Note from "./Note";
 
-const NoteColumn = ({column}) => {
+const NoteColumn = ({column, editorId, setEditorId}) => {
 
     return (
         <div
@@ -10,6 +10,8 @@ const NoteColumn = ({column}) => {
                 <Note
                     key={note.id}
                     {...note}
+                    editorId={editorId}
+                    setEditorId={setEditorId}
                 />
             )}
 

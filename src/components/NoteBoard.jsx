@@ -9,6 +9,8 @@ const NoteBoard = ({filteredData}) => {
     const [notes, setNotes] = useState([]);
     const [takeNoteVisible, setTakeNoteVisible] = useState(false);
 
+    const [editorId, setEditorId] = useState(null);
+
     useEffect(() => {
   
       const calculateColumns = () => {
@@ -63,6 +65,8 @@ const NoteBoard = ({filteredData}) => {
                       <NoteColumn
                         key={columnIndex}
                         column={column}
+                        editorId={editorId}
+                        setEditorId={setEditorId}
                       />
                     )}
                 </div>

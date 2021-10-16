@@ -5,11 +5,10 @@ import ColorSwatch from "./ColorSwatch/ColorSwatch";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCheck, faTrash } from "@fortawesome/free-solid-svg-icons";
 
-const Note = ({id, title, body, color}) => {
+const Note = ({id, title, body, color, editorId, setEditorId}) => {
 
     const [hovering, sethovering] = useState(false);
     const [opacity, setOpacity] = useState(1);
-    const [editing, setEditing] = useState(false);
 
     const [draftTitleHeight, setDraftTitleHeight] = useState("20px");
     const [draftBodyHeight, setDraftBodyHeight] = useState("20px");
@@ -44,7 +43,7 @@ const Note = ({id, title, body, color}) => {
     }
 
     const handleEditNote = () => {
-        if (editing) return;
+        if (editorId === id) return;
 
         if (titleRef.current) {
             const temp = titleRef.current.getBoundingClientRect().height;
@@ -63,17 +62,26 @@ const Note = ({id, title, body, color}) => {
                 setDraftBodyHeight("1.5rem")
             }            
         }
-        
-        setEditing(true);
+
+        setDraftTitle(title);
+        setDraftBody(body)
+        setEditorId(id);
+    }
+
+    const handleClick = () => {
+        if (editorId !== id) setEditorId(null);
     }
 
     const handleSaveNote = () => {
-        setEditing(false);
+        setEditorId(null);
         
         if (draftTitle !== title || draftBody !== body) {
             const noteRef = doc(db, 'ideas', id);
             setDoc(noteRef, {title: draftTitle, body:draftBody}, {merge: true});
         }
+
+        setDraftTitle(null);
+        setDraftBody(null);
     }
 
 
@@ -84,10 +92,12 @@ const Note = ({id, title, body, color}) => {
             onMouseLeave={() => sethovering(false)}
             draggable={true}
             onDragStart={event => event.preventDefault()}
+            onClick={handleClick}
             onDoubleClick={handleEditNote}
             style={{
                 background: color,
-                opacity: opacity
+                opacity: opacity,
+                border: id === editorId && "1px solid #0b0d1b"
             }}
         >
 
@@ -101,7 +111,7 @@ const Note = ({id, title, body, color}) => {
             }
 
             {
-                editing ? 
+                editorId === id ? 
                 <form>
                     <textarea ref={draftTitleRef} placeholder="Title" className="input-title" value={draftTitle} style={{height:draftTitleHeight}} onChange={handleDraftTitleChange} />
                     <textarea ref={draftBodyRef} placeholder="Body" className="input-body" value={draftBody} style={{height:draftBodyHeight}} onChange={handleDraftBodyChange} />
@@ -111,6 +121,7 @@ const Note = ({id, title, body, color}) => {
                     }
                 </form> :
                 <>
+                    { !title && !body && <h3 className="empty-note">Empty Note...</h3> }
                     { title && <h4 ref={titleRef} className='title' >{title}</h4> }
                     <p ref={bodyRef} className='body' >{body}</p>
                 </>
