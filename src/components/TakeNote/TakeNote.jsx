@@ -1,10 +1,10 @@
 import { useRef, useState } from "react";
 import { collection, addDoc } from "@firebase/firestore";
 import db from "../../firebase";
-import "./TakeNote.css"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTimesCircle } from "@fortawesome/free-solid-svg-icons";
 import ColorSwatch from "../ColorSwatch/ColorSwatch";
+import "./TakeNote.css"
 
 const TakeNote = ({setTakeNoteVisible, closeDisabled}) => {
     

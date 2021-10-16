@@ -1,9 +1,9 @@
 import { useRef, useState } from "react";
-import db from '../firebase';
 import { doc, deleteDoc, setDoc } from "firebase/firestore";
-import ColorSwatch from "./ColorSwatch/ColorSwatch";
+import db from '../firebase';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCheck, faTrash } from "@fortawesome/free-solid-svg-icons";
+import ColorSwatch from "./ColorSwatch/ColorSwatch";
 
 const Note = ({id, title, body, color, editorId, setEditorId}) => {
 
