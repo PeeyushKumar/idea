@@ -64,6 +64,7 @@ body {
     display: flex;
     justify-content: space-evenly;
     margin: 1rem;
+    width: var(--note-width);
 }
 
 .note-column {
@@ -71,6 +72,7 @@ body {
     flex-direction: column;
     align-items: center;
     margin: 0 0.5rem;
+    width: var(--note-width);
 }
 
 .note {
@@ -141,6 +143,7 @@ textarea {
     color: #ccc;
     font-weight: 200;
     font-size: 6rem;
+    text-align: center;
 }
 
 @media screen and (max-width:800px) {
@@ -200,4 +203,3 @@ textarea {
 .check-btn :hover {
     color: var(--secondary-dark);
 }
-

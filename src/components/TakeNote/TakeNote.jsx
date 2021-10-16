@@ -6,7 +6,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTimesCircle } from "@fortawesome/free-solid-svg-icons";
 import ColorSwatch from "../ColorSwatch/ColorSwatch";
 
-const TakeNote = ({setTakeNoteVisible}) => {
+const TakeNote = ({setTakeNoteVisible, closeDisabled}) => {
     
     const [title, setTitle] = useState("");
     const [body, setBody] = useState("");
@@ -30,17 +30,18 @@ const TakeNote = ({setTakeNoteVisible}) => {
 
         if (!title && !body) return;
 
-        const tempTitle = title;
-        const tempBody = body;
+        const draftTitle = title;
+        const draftBody = body;
         setTitle("");
         setBody("");
         setColor("White");
-        setTakeNoteVisible(false);
+        
+        if (!closeDisabled) setTakeNoteVisible(false);
 
         try {
             addDoc(collection(db, "ideas"), {
-                title: tempTitle,
-                body: tempBody,
+                title: draftTitle,
+                body: draftBody,
                 color: color,
             });
         } catch (e) {
@@ -63,9 +64,13 @@ const TakeNote = ({setTakeNoteVisible}) => {
     }
 
     return (
-        
         <form className='take-note' onSubmit={(event) => handleSubmit(event)} style={{background: color}}>
-            <FontAwesomeIcon icon={faTimesCircle} className="close-btn" onClick={handleOnClose}/>            
+
+            {
+                closeDisabled ||
+                <FontAwesomeIcon icon={faTimesCircle} className="close-btn" onClick={handleOnClose}/>            
+            }
+
             <textarea ref={titleRef} className="input-title" rows="1" placeholder='Title' value={title} style={{height:titleHeight}} onChange={handleTitleChange}></textarea>
             <textarea ref={bodyRef} className="input-body" rows="3" placeholder='Take a note...' value={body} style={{height:bodyHeight}} onInput={handleBodyChange}></textarea>
             <button type="submit">Save</button>

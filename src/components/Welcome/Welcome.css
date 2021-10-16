@@ -1,0 +1,33 @@
+
+.welcome {
+    display:flex;
+    justify-content:space-evenly;
+    align-items:center;
+    height:100vh;
+}
+
+.large-text {
+    color:#ccc;
+    font-weight: 200;
+    font-size: 6rem;
+    text-align: center;
+    width: 600px;
+}
+
+@media screen and (max-width:1100px) {
+    .large-text {
+        width: 400px;
+        font-size: 4rem;
+    }
+}
+
+@media screen and (max-width:800px) {
+    .welcome {
+        flex-direction: column;
+        justify-content: flex-start;
+    }
+    .large-text {
+        font-size: 3rem;
+        margin: 100px auto 3rem auto;
+    }
+}
