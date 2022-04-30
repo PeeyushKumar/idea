@@ -104,6 +104,14 @@ body {
     pointer-events: none;
 }
 
+.author {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    margin: 0.5rem;
+    font-size: small;
+}
+
 textarea {
     width: 100%;
     font-size: inherit;
@@ -202,4 +210,13 @@ textarea {
 
 .check-btn :hover {
     color: var(--secondary-dark);
+}
+
+.logout-icon {
+    cursor: pointer;
+}
+
+.logout-icon :hover {
+    transition: all 100ms;
+    color:#3c28d0
 }

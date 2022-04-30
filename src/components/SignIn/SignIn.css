@@ -1,0 +1,45 @@
+
+.signin-text {
+    color:#ccc;
+    font-weight: 200;
+    font-size: 6rem;
+    text-align: center;
+    width: 600px;
+    pointer-events: none;
+    user-select: none;
+}
+
+.sign-in {
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    height:100vh;
+}
+
+#google-icon {
+    color: #4a4c5e;
+    transition: all 400ms;
+}
+
+#google-icon:hover {
+    color: #3c28d0;
+    cursor: pointer;
+}
+
+@media screen and (max-width:1100px) {
+    .signin-text {
+        width: 400px;
+        font-size: 4rem;
+    }
+}
+
+@media screen and (max-width:800px) {
+    .sign-in {
+        flex-direction: column;
+        justify-content: center;
+    }
+    .signin-text {
+        font-size: 3rem;
+        margin: 100px auto 3rem auto;
+    }
+}

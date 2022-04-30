@@ -1,6 +1,6 @@
 import { useRef, useState } from "react";
 import { collection, addDoc } from "@firebase/firestore";
-import db from "../../firebase";
+import { db, auth } from "../../firebase";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTimesCircle } from "@fortawesome/free-solid-svg-icons";
 import ColorSwatch from "../ColorSwatch/ColorSwatch";
@@ -10,7 +10,7 @@ const TakeNote = ({setTakeNoteVisible, closeDisabled}) => {
     
     const [title, setTitle] = useState("");
     const [body, setBody] = useState("");
-    const [color, setColor] = useState("White");
+    const [color, setColor] = useState("#FFFFFF");
 
     const [titleHeight, setTitleHeight] = useState("30px");
     const [bodyHeight, setBodyHeight] = useState("100px");
@@ -22,7 +22,7 @@ const TakeNote = ({setTakeNoteVisible, closeDisabled}) => {
         setTakeNoteVisible(false);
         setTitle("");
         setBody("");
-        setColor("White");
+        setColor("#FFFFFF");
     }
 
     const handleSubmit = async (event) => {
@@ -34,7 +34,7 @@ const TakeNote = ({setTakeNoteVisible, closeDisabled}) => {
         const draftBody = body;
         setTitle("");
         setBody("");
-        setColor("White");
+        setColor("#FFFFFF");
         
         if (!closeDisabled) setTakeNoteVisible(false);
 
@@ -43,6 +43,8 @@ const TakeNote = ({setTakeNoteVisible, closeDisabled}) => {
                 title: draftTitle,
                 body: draftBody,
                 color: color,
+                uid: auth.currentUser.uid,
+                author: auth.currentUser.displayName
             });
         } catch (e) {
             console.error("Error adding document: ", e);

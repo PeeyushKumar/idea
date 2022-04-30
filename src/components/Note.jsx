@@ -1,11 +1,11 @@
 import { useRef, useState } from "react";
 import { doc, deleteDoc, setDoc } from "firebase/firestore";
-import db from '../firebase';
+import { db, auth } from '../firebase';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCheck, faTrash } from "@fortawesome/free-solid-svg-icons";
 import ColorSwatch from "./ColorSwatch/ColorSwatch";
 
-const Note = ({id, title, body, color, editorId, setEditorId}) => {
+const Note = ({id, title, body, author, color, editorId, setEditorId}) => {
 
     const [hovering, sethovering] = useState(false);
     const [opacity, setOpacity] = useState(1);
@@ -84,6 +84,7 @@ const Note = ({id, title, body, color, editorId, setEditorId}) => {
         setDraftBody(null);
     }
 
+    const authorFontColor = color == "#FFFFFF" ? "#ccc" : "#666";
 
     return (
         <div
@@ -100,6 +101,15 @@ const Note = ({id, title, body, color, editorId, setEditorId}) => {
                 border: id === editorId && "1px solid #0b0d1b"
             }}
         >
+            {
+                hovering &&
+                <p className="author" style={{
+                    color: authorFontColor
+                }}>
+                    ~{author}
+                </p>
+            }
+            
 
             {
                 hovering && 

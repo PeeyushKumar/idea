@@ -1,6 +1,15 @@
-import SearchBar from "./SearchBar";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faSignOutAlt } from "@fortawesome/free-solid-svg-icons";
 
-const Nav = ({searchText, setSearchText}) => {
+import SearchBar from "./SearchBar";
+import { auth } from "../firebase";
+
+
+const Nav = ({searchText, setSearchText, currentUser}) => {
+
+    const handleLogout = () => {
+        auth.signOut().then(() => () => console.log("Logged out"))
+    }
 
     return (
         <div className="nav">
@@ -10,6 +19,14 @@ const Nav = ({searchText, setSearchText}) => {
                 <img style={{userSelect:"none", pointerEvents:"none"}} src="assets/splash.png" alt="Logo" className="splash" />
             </div>
             <SearchBar searchText={searchText} setSearchText={setSearchText}/>
+
+            {
+                currentUser &&
+                <div className="logout-icon" >
+                    <FontAwesomeIcon icon={faSignOutAlt} size="2x" onClick={handleLogout}/>
+                </div>
+            }
+            
         </div>
     );
 }
