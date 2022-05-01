@@ -43,7 +43,7 @@ const TakeNote = ({setTakeNoteVisible, closeDisabled}) => {
                 title: draftTitle,
                 body: draftBody,
                 color: color,
-                uid: auth.currentUser.uid,
+                author_id: auth.currentUser.uid,
                 author: auth.currentUser.displayName
             });
         } catch (e) {

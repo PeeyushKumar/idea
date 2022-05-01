@@ -18,21 +18,12 @@
 
 .share-panel {
     position: absolute;
-    top: 0;
-    left: 190px;
+    top: 0.5rem;
+    z-index: 10;
     border-radius: 10px;
     padding: 0.5rem;
     background: #ffffff;
     border: 1px solid #dedede;
-}
-
-.share-panel-comming-soon {
-    position: absolute;
-    top: 0;
-    left: 190px;
-    border-radius: 10px;
-    padding: 0.5rem;
-    background: #ffffff;
-    border: 1px solid #dedede;
-    width: 7rem;
+    box-shadow: 0 0 0.7rem  #ccc;
+    transition-duration: 0.1s;
 }

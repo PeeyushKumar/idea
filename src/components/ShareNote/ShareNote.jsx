@@ -26,8 +26,15 @@ const ShareNote = () => {
             {
                 shareOpen &&
                 <form onSubmit={(e) => handleShare(e)}>
-                    <input disabled type="text" className="share-panel-comming-soon" placeholder="Comming soon" />
-                    {/* <input type="text" name="email" className="share-panel" placeholder="Email" onChange={e => setShareeEmail(e.target.value)} /> */}
+                    <input
+                        disabled
+                        type="text"
+                        className="share-panel"
+                        placeholder="Comming soon"
+                        // placeholder="Email"
+                        onMouseLeave={toggleShareOpen}
+                        onChange={e => setShareeEmail(e.target.value)}
+                    />
                 </form>   
             }
             
