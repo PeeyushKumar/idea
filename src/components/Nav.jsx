@@ -6,15 +6,18 @@ import { auth } from "../firebase";
 import SearchBar from "./SearchBar";
 
 
-const Nav = ({searchText, setSearchText, currentUser, unsubscribeListener}) => {
+const Nav = ({searchText, setSearchText, currentUser, unsubscribeListeners}) => {
 
     const handleLogout = () => {
 
-        try{           
-            unsubscribeListener()
-        } catch {
-            console.log("Cant unsubscribe. Not logged in")
-        }
+        unsubscribeListeners.forEach(unSub => {
+            try{           
+                unSub()
+            } catch {
+                console.log("Cant unsubscribe. Not logged in")
+            }
+        })
+        
 
         auth.signOut().then(() => () => console.log("Logged out"))
     }

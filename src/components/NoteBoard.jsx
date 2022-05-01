@@ -6,7 +6,7 @@ import { faFeatherAlt } from "@fortawesome/free-solid-svg-icons";
 import NoteColumn from "./NoteColumn";
 import TakeNote from "./TakeNote/TakeNote";
 
-const NoteBoard = ({filteredData}) => {
+const NoteBoard = ({filteredData, users}) => {
 
     const [notes, setNotes] = useState([]);
     const [takeNoteVisible, setTakeNoteVisible] = useState(false);
@@ -50,6 +50,7 @@ const NoteBoard = ({filteredData}) => {
                 <NoteColumn
                   key={columnIndex}
                   column={column}
+                  users={users}
                   editorId={editorId}
                   setEditorId={setEditorId}
                 />

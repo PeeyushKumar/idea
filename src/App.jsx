@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 
-import { collection, onSnapshot, query, where, doc, getDoc } from '@firebase/firestore';
+import { collection, onSnapshot, query, where, doc, getDoc, getDocs } from '@firebase/firestore';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faGhost } from "@fortawesome/free-solid-svg-icons";
 import { db, auth } from './firebase';
@@ -14,18 +14,34 @@ import NoteBoard from './components/NoteBoard';
 import './App.css';
 
 
-let unsubscribeListener = null;
+let unsubscribeListeners = [];
 
 const App = () => {
 
   const [currentUser, setCurrentUser] = useState(null);
   const [loading, setLoading] = useState(true);
+  
+  const [users, setUsers] = useState([]);
+
+  const [userIdeas, setUserIdeas] = useState([]);
+  const [sharedIdeas, setSharedIdeas] = useState([]);
+
   const [data, setData] = useState(null);
+
   const [searchText, setSearchText] = useState("");
   const [filteredData, setFilteredData] = useState([]);
 
 
   useEffect(() => {
+
+    const usersCollection = collection(db, `/users`);
+  
+    let unSub = onSnapshot(usersCollection, snapshot => {
+      setUsers(snapshot.docs.map(doc =>  doc.data()));
+    })
+
+    unsubscribeListeners.push(unSub)
+    
   
     onAuthStateChanged(auth, user => {
 
@@ -33,16 +49,34 @@ const App = () => {
   
         const ideasCollection = collection(db, `/users/${user.uid}/ideas`);
 
-        unsubscribeListener = onSnapshot(ideasCollection, snapshot => {
-          setData(snapshot.docs.map(doc => ({...doc.data(), id:doc.id})));
+        let unSub = onSnapshot(ideasCollection, snapshot => {
+          setUserIdeas(snapshot.docs.map(doc => ({...doc.data(), id:doc.id})));
           setLoading(false);
         })
+
+        unsubscribeListeners.push(unSub)
+
+
+
+        const sharedIdeasCollection = collection(db, `/users/${user.uid}/sharedIdeas`);
+
+        unSub = onSnapshot(sharedIdeasCollection, snapshot => {
+          setSharedIdeas(snapshot.docs.map(doc => ({...doc.data(), id:doc.id})));
+        })
+
+        unsubscribeListeners.push(unSub)
       }
 
       setCurrentUser(user)
     })
 
   }, []);
+
+
+  useEffect(() => {
+    setData([...userIdeas, ...sharedIdeas])
+  }, [userIdeas, sharedIdeas])
+
   
   useEffect(() => {
     if (data) {
@@ -53,7 +87,7 @@ const App = () => {
 
   return (
     <div className="App">
-      <Nav searchText={searchText} setSearchText={setSearchText} currentUser={currentUser} unsubscribeListener={unsubscribeListener} />
+      <Nav searchText={searchText} setSearchText={setSearchText} currentUser={currentUser} unsubscribeListeners={unsubscribeListeners} />
       <div className='main-container'>
       {
         auth.currentUser ?
@@ -64,7 +98,7 @@ const App = () => {
             <Welcome /> :
             filteredData.length === 0 ?
             <FontAwesomeIcon icon={faGhost} style={{position:"absolute", top:"50%", left:"50%", transform:"translateX(-50%) translateY(-50%)", fontSize:"20rem", color:"#dedede"}}/> :
-            <NoteBoard filteredData={filteredData} />
+            <NoteBoard filteredData={filteredData} users={users}/>
         }</>
           :
         <SignIn />

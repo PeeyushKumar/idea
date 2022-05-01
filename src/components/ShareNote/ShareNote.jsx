@@ -1,11 +1,14 @@
 import { useState } from "react";
 
+import { addDoc, collection } from "firebase/firestore";
+import { auth, db } from '../../firebase';
+
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faShareAlt } from "@fortawesome/free-solid-svg-icons";
 
 import "./ShareNote.css";
 
-const ShareNote = () => {
+const ShareNote = ({users, title, body, color, author, author_id}) => {
 
     const [shareOpen, setShareOpen] = useState(false);
     const [shareeEmail, setShareeEmail] = useState(false);
@@ -16,7 +19,27 @@ const ShareNote = () => {
 
     const handleShare = e => {
         e.preventDefault();
-        console.log(`Share with ${shareeEmail}`)
+        toggleShareOpen()
+
+        const user = users.find(user => user.email === shareeEmail)
+
+        if (user) {
+
+            if (user.uid == auth.currentUser.uid) return;
+
+            try {
+                addDoc(collection(db, `/users/${user.uid}/sharedIdeas`), {
+                    title: title,
+                    body: body,
+                    color: color,
+                    author_id: author_id,
+                    author: author
+                });
+            } catch (e) {
+                console.error("Error adding document: ", e);
+            }
+
+        }
     }
 
     return(
@@ -27,11 +50,9 @@ const ShareNote = () => {
                 shareOpen &&
                 <form onSubmit={(e) => handleShare(e)}>
                     <input
-                        disabled
                         type="text"
                         className="share-panel"
-                        placeholder="Comming soon"
-                        // placeholder="Email"
+                        placeholder="Send to email"
                         onMouseLeave={toggleShareOpen}
                         onChange={e => setShareeEmail(e.target.value)}
                     />

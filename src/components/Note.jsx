@@ -6,7 +6,7 @@ import { faCheck, faTrash } from "@fortawesome/free-solid-svg-icons";
 import ColorSwatch from "./ColorSwatch/ColorSwatch";
 import ShareNote from "./ShareNote/ShareNote";
 
-const Note = ({id, title, body, author, color, editorId, setEditorId}) => {
+const Note = ({id, title, body, author, author_id, color, editorId, setEditorId, users}) => {
 
     const [hovering, sethovering] = useState(false);
     const [opacity, setOpacity] = useState(1);
@@ -23,9 +23,12 @@ const Note = ({id, title, body, author, color, editorId, setEditorId}) => {
     const draftTitleRef = useRef();
     const draftBodyRef = useRef();
 
+    
+
     const deleteNote = id => {
         setOpacity(0);
-        setTimeout(() => deleteDoc(doc(db, `/users/${auth.currentUser.uid}/ideas`, id)), 200);        
+        const collectionName = author_id === auth.currentUser.uid ? 'ideas' : 'sharedIdeas'
+        setTimeout(() => deleteDoc(doc(db, `/users/${auth.currentUser.uid}/${collectionName}`, id)), 200);        
     }
 
     const handleDraftTitleChange = event => {
@@ -39,7 +42,10 @@ const Note = ({id, title, body, author, color, editorId, setEditorId}) => {
     }
 
     const handleChangeColor = newColor => {
-        const noteRef = doc(db, `/users/${auth.currentUser.uid}/ideas`, id);
+
+        const collectionName = author_id === auth.currentUser.uid ? 'ideas' : 'sharedIdeas'
+        
+        const noteRef = doc(db, `/users/${auth.currentUser.uid}/${collectionName}`, id);
         setDoc(noteRef, { color: newColor}, {merge: true});
     }
 
@@ -77,7 +83,9 @@ const Note = ({id, title, body, author, color, editorId, setEditorId}) => {
         setEditorId(null);
         
         if (draftTitle !== title || draftBody !== body) {
-            const noteRef = doc(db, `/users/${auth.currentUser.uid}/ideas`, id);
+
+            const collectionName = author_id === auth.currentUser.uid ? 'ideas' : 'sharedIdeas'
+            const noteRef = doc(db, `/users/${auth.currentUser.uid}/${collectionName}`, id);
             setDoc(noteRef, {title: draftTitle, body:draftBody}, {merge: true});
         }
 
@@ -85,6 +93,7 @@ const Note = ({id, title, body, author, color, editorId, setEditorId}) => {
         setDraftBody(null);
     }
 
+    
     const authorFontColor = color === "#FFFFFF" ? "#ccc" : "#666";
 
     return (
@@ -145,7 +154,7 @@ const Note = ({id, title, body, author, color, editorId, setEditorId}) => {
 
             {
                 hovering &&
-                <ShareNote />
+                <ShareNote users={users} title={title} body={body} author={author} author_id={author_id} color={color} />
             }
 
         </div>
