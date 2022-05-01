@@ -1,8 +1,9 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSignOutAlt } from "@fortawesome/free-solid-svg-icons";
 
-import SearchBar from "./SearchBar";
 import { auth } from "../firebase";
+
+import SearchBar from "./SearchBar";
 
 
 const Nav = ({searchText, setSearchText, currentUser, unsubscribeListener}) => {

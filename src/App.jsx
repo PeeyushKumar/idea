@@ -1,14 +1,18 @@
 import { useEffect, useState } from 'react';
-import { collection, onSnapshot } from '@firebase/firestore';
-import { db, auth } from './firebase';
+
+import { collection, onSnapshot, query, where } from '@firebase/firestore';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faGhost } from "@fortawesome/free-solid-svg-icons";
-import NoteBoard from './components/NoteBoard';
+import { db, auth } from './firebase';
+import { onAuthStateChanged } from "firebase/auth";
+
 import Nav from './components/Nav';
 import Welcome from './components/Welcome/Welcome';
-import './App.css';
-import { onAuthStateChanged } from "firebase/auth";
 import SignIn from './components/SignIn/SignIn';
+import NoteBoard from './components/NoteBoard';
+
+import './App.css';
+
 
 let unsubscribeListener = null;
 
@@ -26,8 +30,11 @@ const App = () => {
     onAuthStateChanged(auth, user => {
 
       if (user) {
-        unsubscribeListener = onSnapshot( collection(db, "ideas"), snapshot => {
-          setData(snapshot.docs.map(doc => ({...doc.data(), id:doc.id})));
+
+        const q = query(collection(db, "ideas"), where("uid", "==", user.uid))
+
+        unsubscribeListener = onSnapshot(q, querySnapshot => {
+          setData(querySnapshot.docs.map(doc => ({...doc.data(), id:doc.id})));
           setLoading(false);
         })
       }
@@ -36,8 +43,6 @@ const App = () => {
     })
 
   }, []);
-
-  console.log()
   
   useEffect(() => {
     if (data) {

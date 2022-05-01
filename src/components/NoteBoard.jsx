@@ -1,6 +1,8 @@
 import { useState, useEffect } from "react";
+
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faFeatherAlt } from "@fortawesome/free-solid-svg-icons";
+
 import NoteColumn from "./NoteColumn";
 import TakeNote from "./TakeNote/TakeNote";
 
