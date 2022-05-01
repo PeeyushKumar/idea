@@ -10,28 +10,34 @@ import './App.css';
 import { onAuthStateChanged } from "firebase/auth";
 import SignIn from './components/SignIn/SignIn';
 
+let unsubscribeListener = null;
 
 const App = () => {
 
-  const [currentUser, setCrrentUser] = useState(null);
+  const [currentUser, setCurrentUser] = useState(null);
   const [loading, setLoading] = useState(true);
   const [data, setData] = useState(null);
   const [searchText, setSearchText] = useState("");
   const [filteredData, setFilteredData] = useState([]);
 
+
   useEffect(() => {
   
-    onSnapshot( collection(db, "ideas"), snapshot => {
-      setData(snapshot.docs.map(doc => ({...doc.data(), id:doc.id})));
-      setLoading(false)
-    })
-
     onAuthStateChanged(auth, user => {
-      setCrrentUser(user)
+
+      if (user) {
+        unsubscribeListener = onSnapshot( collection(db, "ideas"), snapshot => {
+          setData(snapshot.docs.map(doc => ({...doc.data(), id:doc.id})));
+          setLoading(false);
+        })
+      }
+
+      setCurrentUser(user)
     })
 
   }, []);
 
+  console.log()
   
   useEffect(() => {
     if (data) {
@@ -42,7 +48,7 @@ const App = () => {
 
   return (
     <div className="App">
-      <Nav searchText={searchText} setSearchText={setSearchText} currentUser={currentUser} />
+      <Nav searchText={searchText} setSearchText={setSearchText} currentUser={currentUser} unsubscribeListener={unsubscribeListener} />
       <div className='main-container'>
       {
         auth.currentUser ?

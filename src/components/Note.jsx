@@ -1,6 +1,6 @@
 import { useRef, useState } from "react";
 import { doc, deleteDoc, setDoc } from "firebase/firestore";
-import { db, auth } from '../firebase';
+import { db } from '../firebase';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCheck, faTrash } from "@fortawesome/free-solid-svg-icons";
 import ColorSwatch from "./ColorSwatch/ColorSwatch";
@@ -84,7 +84,7 @@ const Note = ({id, title, body, author, color, editorId, setEditorId}) => {
         setDraftBody(null);
     }
 
-    const authorFontColor = color == "#FFFFFF" ? "#ccc" : "#666";
+    const authorFontColor = color === "#FFFFFF" ? "#ccc" : "#666";
 
     return (
         <div
