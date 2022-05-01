@@ -39,7 +39,8 @@ const TakeNote = ({setTakeNoteVisible, closeDisabled}) => {
         if (!closeDisabled) setTakeNoteVisible(false);
 
         try {
-            addDoc(collection(db, "ideas"), {
+            console.log(auth.uid)
+            addDoc(collection(db, `/users/${auth.currentUser.uid}/ideas`), {
                 title: draftTitle,
                 body: draftBody,
                 color: color,

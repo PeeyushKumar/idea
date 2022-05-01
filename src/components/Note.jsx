@@ -1,6 +1,6 @@
 import { useRef, useState } from "react";
 import { doc, deleteDoc, setDoc } from "firebase/firestore";
-import { db } from '../firebase';
+import { db, auth } from '../firebase';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCheck, faTrash } from "@fortawesome/free-solid-svg-icons";
 import ColorSwatch from "./ColorSwatch/ColorSwatch";
@@ -25,7 +25,7 @@ const Note = ({id, title, body, author, color, editorId, setEditorId}) => {
 
     const deleteNote = id => {
         setOpacity(0);
-        setTimeout(() => deleteDoc(doc(db, 'ideas', id)), 200);        
+        setTimeout(() => deleteDoc(doc(db, `/users/${auth.currentUser.uid}/ideas`, id)), 200);        
     }
 
     const handleDraftTitleChange = event => {
@@ -39,7 +39,7 @@ const Note = ({id, title, body, author, color, editorId, setEditorId}) => {
     }
 
     const handleChangeColor = newColor => {
-        const noteRef = doc(db, 'ideas', id);
+        const noteRef = doc(db, `/users/${auth.currentUser.uid}/ideas`, id);
         setDoc(noteRef, { color: newColor}, {merge: true});
     }
 
@@ -77,7 +77,7 @@ const Note = ({id, title, body, author, color, editorId, setEditorId}) => {
         setEditorId(null);
         
         if (draftTitle !== title || draftBody !== body) {
-            const noteRef = doc(db, 'ideas', id);
+            const noteRef = doc(db, `/users/${auth.currentUser.uid}/ideas`, id);
             setDoc(noteRef, {title: draftTitle, body:draftBody}, {merge: true});
         }
 

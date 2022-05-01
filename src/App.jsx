@@ -30,10 +30,11 @@ const App = () => {
     onAuthStateChanged(auth, user => {
 
       if (user) {
-        const q = query(collection(db, "ideas"), where("author_id", "==", user.uid))
+  
+        const ideasCollection = collection(db, `/users/${user.uid}/ideas`);
 
-        unsubscribeListener = onSnapshot(q, querySnapshot => {
-          setData(querySnapshot.docs.map(doc => ({...doc.data(), id:doc.id})));
+        unsubscribeListener = onSnapshot(ideasCollection, snapshot => {
+          setData(snapshot.docs.map(doc => ({...doc.data(), id:doc.id})));
           setLoading(false);
         })
       }
