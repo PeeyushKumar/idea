@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 
-import { collection, onSnapshot, query, where } from '@firebase/firestore';
+import { collection, onSnapshot, query, where, doc, getDoc } from '@firebase/firestore';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faGhost } from "@fortawesome/free-solid-svg-icons";
 import { db, auth } from './firebase';
@@ -30,8 +30,7 @@ const App = () => {
     onAuthStateChanged(auth, user => {
 
       if (user) {
-
-        const q = query(collection(db, "ideas"), where("uid", "==", user.uid))
+        const q = query(collection(db, "ideas"), where("uid","==",user.uid))
 
         unsubscribeListener = onSnapshot(q, querySnapshot => {
           setData(querySnapshot.docs.map(doc => ({...doc.data(), id:doc.id})));

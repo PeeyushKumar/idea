@@ -33,15 +33,14 @@ const ColorSwatch = ({color, handleChangeColor}) => {
         <>
             { <FontAwesomeIcon className="btn-palette" icon={faPalette} onClick={toggleSwatch} /> }
 
-            { 
-                <>
-                    <div className={className+'-1'} style={{backgroundColor: colors.color1}} onClick={() => handleOnClick(colors.color1)}></div>
-                    <div className={className+'-2'} style={{backgroundColor: colors.color2}} onClick={() => handleOnClick(colors.color2)}></div>
-                    <div className={className+'-3'} style={{backgroundColor: colors.color3}} onClick={() => handleOnClick(colors.color3)}></div>
-                    <div className={className+'-4'} style={{backgroundColor: colors.color4}} onClick={() => handleOnClick(colors.color4)}></div>
-                    <div className={className+'-5'} style={{backgroundColor: colors.color5}} onClick={() => handleOnClick(colors.color5)}></div>
-                </>
-            }
+            <>
+                <div className={className+'-1'} style={{backgroundColor: colors.color1}} onClick={() => handleOnClick(colors.color1)}></div>
+                <div className={className+'-2'} style={{backgroundColor: colors.color2}} onClick={() => handleOnClick(colors.color2)}></div>
+                <div className={className+'-3'} style={{backgroundColor: colors.color3}} onClick={() => handleOnClick(colors.color3)}></div>
+                <div className={className+'-4'} style={{backgroundColor: colors.color4}} onClick={() => handleOnClick(colors.color4)}></div>
+                <div className={className+'-5'} style={{backgroundColor: colors.color5}} onClick={() => handleOnClick(colors.color5)}></div>
+            </>
+        
         </>
     );
 }

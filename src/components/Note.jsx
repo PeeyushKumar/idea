@@ -4,6 +4,7 @@ import { db } from '../firebase';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCheck, faTrash } from "@fortawesome/free-solid-svg-icons";
 import ColorSwatch from "./ColorSwatch/ColorSwatch";
+import ShareNote from "./ShareNote/ShareNote";
 
 const Note = ({id, title, body, author, color, editorId, setEditorId}) => {
 
@@ -140,6 +141,11 @@ const Note = ({id, title, body, author, color, editorId, setEditorId}) => {
             {
                 hovering && 
                 <ColorSwatch color={color} handleChangeColor={handleChangeColor} />
+            }
+
+            {
+                hovering &&
+                <ShareNote />
             }
 
         </div>
