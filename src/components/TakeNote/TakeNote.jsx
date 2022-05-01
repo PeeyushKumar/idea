@@ -1,5 +1,5 @@
 import { useRef, useState } from "react";
-import { collection, addDoc } from "@firebase/firestore";
+import { collection, addDoc, doc, getDoc, setDoc } from "@firebase/firestore";
 import { db, auth } from "../../firebase";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTimesCircle } from "@fortawesome/free-solid-svg-icons";
@@ -39,6 +39,11 @@ const TakeNote = ({setTakeNoteVisible, closeDisabled}) => {
         if (!closeDisabled) setTakeNoteVisible(false);
 
         try {
+            setDoc(doc(db, '/users', auth.currentUser.uid), {
+                email: auth.currentUser.email,
+                uid: auth.currentUser.uid
+            })
+        
             addDoc(collection(db, `/users/${auth.currentUser.uid}/ideas`), {
                 title: draftTitle,
                 body: draftBody,

@@ -32,30 +32,29 @@ const App = () => {
   const [filteredData, setFilteredData] = useState([]);
 
 
-  useEffect(() => {
-
-    const usersCollection = collection(db, `/users`);
-  
-    let unSub = onSnapshot(usersCollection, snapshot => {
-      setUsers(snapshot.docs.map(doc =>  doc.data()));
-    })
-
-    unsubscribeListeners.push(unSub)
-    
+  useEffect(() => {    
   
     onAuthStateChanged(auth, user => {
 
       if (user) {
+
+        const usersCollection = collection(db, `/users`);
   
+        let unSub = onSnapshot(usersCollection, snapshot => {
+          setUsers(snapshot.docs.map(doc =>  doc.data()));
+        })
+
+        unsubscribeListeners.push(unSub)
+  
+        
         const ideasCollection = collection(db, `/users/${user.uid}/ideas`);
 
-        let unSub = onSnapshot(ideasCollection, snapshot => {
+        unSub = onSnapshot(ideasCollection, snapshot => {
           setUserIdeas(snapshot.docs.map(doc => ({...doc.data(), id:doc.id})));
           setLoading(false);
         })
 
         unsubscribeListeners.push(unSub)
-
 
 
         const sharedIdeasCollection = collection(db, `/users/${user.uid}/sharedIdeas`);
