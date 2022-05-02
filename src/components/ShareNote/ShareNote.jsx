@@ -24,6 +24,7 @@ const ShareNote = ({users, title, body, color, altered, author_id, author}) => {
     }, [users, searchText])
 
     const toggleShareOpen = () => {
+        setSearchText("");
         setShareOpen(prev => !prev)
     }
 

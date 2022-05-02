@@ -117,8 +117,8 @@ const Note = ({id, title, body, author, author_id, senderId, senderName, color, 
                 hovering &&
                 <div className="attribution">
                 {
-                    senderId ?
-                    <p style={{color: attributionFontColor}}>~{senderName}</p> : 
+                    // senderId ?
+                    // <p style={{color: attributionFontColor}}>~{senderName}</p> : 
                     <p style={{color: attributionFontColor}}>~{author}</p>
                 }                    
                 </div>
