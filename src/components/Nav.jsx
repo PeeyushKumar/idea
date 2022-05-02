@@ -19,7 +19,7 @@ const Nav = ({searchText, setSearchText, currentUser, unsubscribeListeners}) => 
         })
         
 
-        auth.signOut().then(() => () => console.log("Logged out"))
+        auth.signOut().then(() => console.log("Logged out"))
     }
 
     return (

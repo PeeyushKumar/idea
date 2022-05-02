@@ -41,7 +41,9 @@ const TakeNote = ({setTakeNoteVisible, closeDisabled}) => {
         try {
             setDoc(doc(db, '/users', auth.currentUser.uid), {
                 email: auth.currentUser.email,
-                uid: auth.currentUser.uid
+                uid: auth.currentUser.uid,
+                displayName: auth.currentUser.displayName,
+                photoURL: auth.currentUser.photoURL
             })
         
             addDoc(collection(db, `/users/${auth.currentUser.uid}/ideas`), {
