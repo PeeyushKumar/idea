@@ -9,7 +9,6 @@ const AlteredTag = () => {
 
     const [messageBoxOpen, setMessageBoxOpen] = useState(false);
 
-    
     return (
         <>
             <FontAwesomeIcon

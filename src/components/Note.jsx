@@ -1,11 +1,15 @@
 import { useRef, useState } from "react";
+
 import { doc, deleteDoc, setDoc } from "firebase/firestore";
 import { db, auth } from '../firebase';
+
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCheck, faTrash } from "@fortawesome/free-solid-svg-icons";
+
 import ColorSwatch from "./ColorSwatch/ColorSwatch";
 import ShareNote from "./ShareNote/ShareNote";
 import AlteredTag from "./AlteredTag/AlteredTag";
+
 
 const Note = ({id, title, body, author, author_id, senderId, senderName, color, altered, editorId, setEditorId, users}) => {
 

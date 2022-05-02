@@ -1,11 +1,11 @@
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faGoogle } from "@fortawesome/free-brands-svg-icons";
-
 import { GoogleAuthProvider, signInWithPopup } from "firebase/auth";
 import { auth, provider } from "../../firebase";
 
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faGoogle } from "@fortawesome/free-brands-svg-icons";
 
 import "./SignIn.css"
+
 
 const SignIn = () => {
 
@@ -14,7 +14,6 @@ const SignIn = () => {
             const credential = GoogleAuthProvider.credentialFromResult(result);
         }).catch(err => console.log(err))
     }
-
 
     return(
         <div className="sign-in">

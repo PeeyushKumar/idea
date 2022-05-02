@@ -1,15 +1,17 @@
 import { useEffect, useState } from 'react';
 
-import { collection, onSnapshot, query, where, doc, getDoc, getDocs } from '@firebase/firestore';
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faGhost } from "@fortawesome/free-solid-svg-icons";
 import { db, auth } from './firebase';
 import { onAuthStateChanged } from "firebase/auth";
+import { collection, onSnapshot } from '@firebase/firestore';
+
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faGhost, faFeatherAlt } from "@fortawesome/free-solid-svg-icons";
 
 import Nav from './components/Nav';
 import Welcome from './components/Welcome/Welcome';
 import SignIn from './components/SignIn/SignIn';
 import NoteBoard from './components/NoteBoard';
+import TakeNote from './components/TakeNote/TakeNote';
 
 import './App.css';
 
@@ -30,6 +32,8 @@ const App = () => {
 
   const [searchText, setSearchText] = useState("");
   const [filteredData, setFilteredData] = useState([]);
+
+  const [takeNoteVisible, setTakeNoteVisible] = useState(false);
 
 
   useEffect(() => {    
@@ -90,16 +94,35 @@ const App = () => {
       <div className='main-container'>
       {
         auth.currentUser ?
-        <>{
+        <>
+        {
           loading ? 
-            <h1 className="no-data">Loading</h1> :
-            data.length === 0 ?
-            <Welcome /> :
-            filteredData.length === 0 ?
-            <FontAwesomeIcon icon={faGhost} style={{position:"absolute", top:"50%", left:"50%", transform:"translateX(-50%) translateY(-50%)", fontSize:"20rem", color:"#dedede"}}/> :
-            <NoteBoard filteredData={filteredData} users={users}/>
-        }</>
-          :
+          <h1 className="no-data">Loading</h1> :
+          data.length === 0 ?
+          <Welcome /> :
+          <>
+            {
+              filteredData.length === 0 ?
+              <FontAwesomeIcon icon={faGhost} style={{position:"absolute", top:"50%", left:"50%", transform:"translateX(-50%) translateY(-50%)", fontSize:"20rem", color:"#dedede"}}/> :
+              <NoteBoard filteredData={filteredData} users={users}/>
+            }
+            
+            {
+              takeNoteVisible &&
+              <>
+              <div className='screen-blur'></div>
+              <div className="take-note-wrapper">
+                <TakeNote setTakeNoteVisible={setTakeNoteVisible} />
+              </div>
+              </>
+            }
+
+            <div className="new-note-btn" onClick={() => setTakeNoteVisible(!takeNoteVisible)}>
+              <FontAwesomeIcon icon={faFeatherAlt}/>
+            </div> 
+          </>
+        }
+        </> :
         <SignIn />
       }
       </div>

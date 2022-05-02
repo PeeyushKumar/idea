@@ -1,16 +1,11 @@
 import { useState, useEffect } from "react";
 
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faFeatherAlt } from "@fortawesome/free-solid-svg-icons";
-
 import NoteColumn from "./NoteColumn";
-import TakeNote from "./TakeNote/TakeNote";
+
 
 const NoteBoard = ({filteredData, users}) => {
 
     const [notes, setNotes] = useState([]);
-    const [takeNoteVisible, setTakeNoteVisible] = useState(false);
-
     const [editorId, setEditorId] = useState(null);
 
     useEffect(() => {
@@ -40,10 +35,6 @@ const NoteBoard = ({filteredData, users}) => {
   
     return (
         <div className='note-board'>
-          <div className="new-note-btn" onClick={() => setTakeNoteVisible(!takeNoteVisible)}>
-            <FontAwesomeIcon icon={faFeatherAlt}/>
-          </div>
-
           <div className='note-container'>
               {
                 notes.map((column, columnIndex) =>
@@ -56,13 +47,6 @@ const NoteBoard = ({filteredData, users}) => {
                 />
               )}
           </div>
-
-          {
-            takeNoteVisible &&
-            <div className="take-note-wrapper">
-              <TakeNote setTakeNoteVisible={setTakeNoteVisible} />
-            </div>
-          }
         </div>
     )
 }

@@ -1,12 +1,17 @@
 import { useRef, useState } from "react";
-import { collection, addDoc, doc, getDoc, setDoc } from "@firebase/firestore";
+
+import { collection, addDoc, doc, setDoc } from "@firebase/firestore";
 import { db, auth } from "../../firebase";
+
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTimesCircle } from "@fortawesome/free-solid-svg-icons";
+
 import ColorSwatch from "../ColorSwatch/ColorSwatch";
+
 import "./TakeNote.css"
 
-const TakeNote = ({setTakeNoteVisible, closeDisabled}) => {
+
+const TakeNote = ({setTakeNoteVisible, closeDisabled, dropShadow}) => {
     
     const [title, setTitle] = useState("");
     const [body, setBody] = useState("");
@@ -76,7 +81,7 @@ const TakeNote = ({setTakeNoteVisible, closeDisabled}) => {
     }
 
     return (
-        <form className='take-note' onSubmit={(event) => handleSubmit(event)} style={{background: color}}>
+        <form className={`take-note ${dropShadow ? 'shadow' : ''}`} onSubmit={(event) => handleSubmit(event)} style={{background: color}}>
 
             {
                 closeDisabled ||

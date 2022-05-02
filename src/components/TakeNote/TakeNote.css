@@ -7,18 +7,23 @@
 
 .take-note-wrapper {
     position: absolute;
-    top: 150px;
+    width: 100%;
+    left: 50%;
+    transform: translate(-50%, 0);
     display: flex;
     justify-content: center;
+    animation: take-note-pop-out 100ms ease-out forwards;
 }
 
 .take-note {
     z-index: 2;
-    background: white;
     position: relative;
     width: 400px;
     border-radius: 10px;
     padding: 0.9rem;
+}
+
+.shadow {
     box-shadow: 0 0 0.7rem  #ccc;
 }
 
@@ -49,8 +54,19 @@
     color: var(--secondary-dark);
 }
 
-@media screen and (max-width:800px) {
+@media screen and (max-width:600px) {
     .take-note {
         width: 90%;
+    }
+}
+
+@keyframes take-note-pop-out {
+    from {
+        top: 100vh;
+        transform: translate(-50%,0);
+    }
+    to {
+        top: 50vh;
+        transform: translate(-50%,-50%);
     }
 }
