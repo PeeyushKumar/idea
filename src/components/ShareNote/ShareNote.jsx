@@ -32,6 +32,7 @@ const ShareNote = ({users, title, body, color, altered, author_id, author}) => {
 
         toggleShareOpen()
         setPlaneFlying(true)
+        setTimeout(() => setPlaneFlying(false), 600)
         
         addDoc(collection(db, `/users/${user.uid}/sharedIdeas`), {
             title: title,
@@ -42,7 +43,7 @@ const ShareNote = ({users, title, body, color, altered, author_id, author}) => {
             altered: altered,
             senderId: auth.currentUser.uid,
             senderName: auth.currentUser.displayName
-        }).finally(() => setPlaneFlying(false));
+        })
     }
 
     return(

@@ -81,7 +81,7 @@
 }
 
 .share-note-plane-fly {
-    animation: fly 400ms ease-in;
+    animation: fly 600ms ease-in;
 }
 
 @keyframes fly {
