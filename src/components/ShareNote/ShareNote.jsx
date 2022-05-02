@@ -8,7 +8,7 @@ import { faShareAlt, faPaperPlane } from "@fortawesome/free-solid-svg-icons";
 
 import "./ShareNote.css";
 
-const ShareNote = ({users, title, body, color, author, author_id}) => {
+const ShareNote = ({users, title, body, color, altered, author_id, author}) => {
 
     const [shareOpen, setShareOpen] = useState(false);
     const [searchText, setSearchText] = useState("");
@@ -37,15 +37,19 @@ const ShareNote = ({users, title, body, color, author, author_id}) => {
             body: body,
             color: color,
             author_id: author_id,
-            author: author
+            author: author,
+            altered: altered,
+            senderId: auth.currentUser.uid,
+            senderName: auth.currentUser.displayName
         }).finally(() => setPlaneFlying(false));
     }
 
     return(
         <>
-            { <FontAwesomeIcon className="btn-share" icon={faShareAlt} onClick={toggleShareOpen} /> }
+            <FontAwesomeIcon icon={faShareAlt} onClick={toggleShareOpen} className="btn-share"  />
+
+            <FontAwesomeIcon icon={faPaperPlane} onClick={toggleShareOpen} className={`share-note-plane ${planeFlying && "share-note-plane-fly"}`}  />
             
-            { <FontAwesomeIcon icon={faPaperPlane} onClick={toggleShareOpen} className={`share-note-plane ${planeFlying && "share-note-plane-fly"}`}  /> }
             {
                 shareOpen &&
                 <div className="share-panel" onMouseLeave={toggleShareOpen}>

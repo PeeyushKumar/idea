@@ -5,8 +5,9 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCheck, faTrash } from "@fortawesome/free-solid-svg-icons";
 import ColorSwatch from "./ColorSwatch/ColorSwatch";
 import ShareNote from "./ShareNote/ShareNote";
+import AlteredTag from "./AlteredTag/AlteredTag";
 
-const Note = ({id, title, body, author, author_id, color, editorId, setEditorId, users}) => {
+const Note = ({id, title, body, author, author_id, senderId, senderName, color, altered, editorId, setEditorId, users}) => {
 
     const [hovering, sethovering] = useState(false);
     const [opacity, setOpacity] = useState(1);
@@ -27,7 +28,8 @@ const Note = ({id, title, body, author, author_id, color, editorId, setEditorId,
 
     const deleteNote = id => {
         setOpacity(0);
-        const collectionName = author_id === auth.currentUser.uid ? 'ideas' : 'sharedIdeas'
+        const collectionName = senderId ? 'sharedIdeas' : 'ideas'
+
         setTimeout(() => deleteDoc(doc(db, `/users/${auth.currentUser.uid}/${collectionName}`, id)), 200);        
     }
 
@@ -43,7 +45,7 @@ const Note = ({id, title, body, author, author_id, color, editorId, setEditorId,
 
     const handleChangeColor = newColor => {
 
-        const collectionName = author_id === auth.currentUser.uid ? 'ideas' : 'sharedIdeas'
+        const collectionName = senderId ? 'sharedIdeas' : 'ideas'
         
         const noteRef = doc(db, `/users/${auth.currentUser.uid}/${collectionName}`, id);
         setDoc(noteRef, { color: newColor}, {merge: true});
@@ -84,9 +86,9 @@ const Note = ({id, title, body, author, author_id, color, editorId, setEditorId,
         
         if (draftTitle !== title || draftBody !== body) {
 
-            const collectionName = author_id === auth.currentUser.uid ? 'ideas' : 'sharedIdeas'
+            const collectionName = senderId ? 'sharedIdeas' : 'ideas'
             const noteRef = doc(db, `/users/${auth.currentUser.uid}/${collectionName}`, id);
-            setDoc(noteRef, {title: draftTitle, body:draftBody}, {merge: true});
+            setDoc(noteRef, {title: draftTitle, body:draftBody, altered:author_id!==auth.currentUser.uid}, {merge: true});
         }
 
         setDraftTitle(null);
@@ -94,7 +96,7 @@ const Note = ({id, title, body, author, author_id, color, editorId, setEditorId,
     }
 
     
-    const authorFontColor = color === "#FFFFFF" ? "#ccc" : "#666";
+    const attributionFontColor = color === "#FFFFFF" ? "#ccc" : "#666";
 
     return (
         <div
@@ -113,21 +115,19 @@ const Note = ({id, title, body, author, author_id, color, editorId, setEditorId,
         >
             {
                 hovering &&
-                <p className="author" style={{
-                    color: authorFontColor
-                }}>
-                    ~{author}
-                </p>
+                <div className="attribution">
+                {
+                    senderId ?
+                    <p style={{color: attributionFontColor}}>~{senderName}</p> : 
+                    <p style={{color: attributionFontColor}}>~{author}</p>
+                }                    
+                </div>
             }
             
 
             {
                 hovering && 
-                <FontAwesomeIcon
-                    className="btn-trash"
-                    icon={faTrash}
-                    onClick={() => deleteNote(id)}
-                /> 
+                <FontAwesomeIcon className="btn-trash" icon={faTrash} onClick={() => deleteNote(id)}/> 
             }
 
             {
@@ -154,7 +154,12 @@ const Note = ({id, title, body, author, author_id, color, editorId, setEditorId,
 
             {
                 hovering &&
-                <ShareNote users={users} title={title} body={body} author={author} author_id={author_id} color={color} />
+                <ShareNote users={users} title={title} body={body} author={author} author_id={author_id} color={color} altered={altered}  />
+            }
+
+            {
+                hovering && altered &&
+                <AlteredTag />
             }
 
         </div>

@@ -104,7 +104,7 @@ body {
     pointer-events: none;
 }
 
-.author {
+.attribution {
     position: absolute;
     bottom: 0;
     left: 0;
@@ -171,8 +171,8 @@ textarea {
 
 .btn-trash {
     position: absolute;
-    right: 10px;
-    top: 10px;
+    right: 0.5rem;
+    top: 0.5rem;
     color: var(--secondary-light);
 }
 

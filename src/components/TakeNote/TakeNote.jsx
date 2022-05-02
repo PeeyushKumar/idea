@@ -51,7 +51,10 @@ const TakeNote = ({setTakeNoteVisible, closeDisabled}) => {
                 body: draftBody,
                 color: color,
                 author_id: auth.currentUser.uid,
-                author: auth.currentUser.displayName
+                author: auth.currentUser.displayName,
+                altered: false,
+                senderId: null,
+                senderName: null
             });
         } catch (e) {
             console.error("Error adding document: ", e);
