@@ -21,11 +21,11 @@
     right: 2.6rem;
     top: 1.3rem;
     z-index: 10;
-    border-radius: 10px 0px 10px 10px;
     background: #ffffff;
+    border-radius: 8px 0px 8px 8px;
     border: 1px solid #dedede;
     box-shadow: 0 0 0.7rem  #ccc;
-    animation: share-panel-pop-out 100ms ease forwards;
+    animation: share-panel-pop-out 100ms ease-out forwards;
     padding: 0.5rem;
     display: flex;
     flex-direction: column;
@@ -38,7 +38,7 @@
     font-size: medium;
     padding: 0.2rem;
     border-bottom: 1px solid #4a4c5e;
-    animation: share-panel-input-pop-out 100ms ease forwards;
+    animation: share-panel-input-pop-out 100ms ease-out forwards;
     width: fit-content;
 }
 

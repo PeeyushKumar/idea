@@ -49,8 +49,9 @@ body {
     width: 500px;
     font-size: 1rem;
     padding: 0.5rem;
-    border-radius: 10px;
     outline: none;
+    border: none;
+    border-radius: 5px;
 }
 
 .note-board {
@@ -81,7 +82,7 @@ body {
     border: 1px solid #dedede;
     width: var(--note-width);
     height: fit-content;
-    border-radius: 10px;
+    border-radius: 8px;
     margin: 0.5rem 0;
     padding: 1.1rem 1.1rem 2.3rem 1.1rem;
 }
