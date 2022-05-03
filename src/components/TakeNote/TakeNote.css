@@ -6,6 +6,7 @@
 }
 
 .take-note-wrapper {
+    user-select: none;
     position: absolute;
     width: 100%;
     left: 50%;
@@ -16,6 +17,7 @@
 }
 
 .take-note {
+    user-select: none;
     z-index: 2;
     position: relative;
     width: 400px;
