@@ -40,7 +40,7 @@ const Nav = ({searchText, setSearchText, currentUser, unsubscribeListeners}) => 
             {
                 auth.currentUser ?
                 <UserPanel handleLogout={handleLogout}/> :
-                <button className='btn-sign-in' onClick={handleLogIn}>Sign in</button>  
+                <button className='btn btn-sign-in' onClick={handleLogIn}>Sign in</button>  
             }  
 
         </div>
