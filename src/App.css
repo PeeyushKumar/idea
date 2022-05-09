@@ -180,6 +180,10 @@ textarea {
     }
 }
 
+.btn {
+    cursor: pointer;
+}
+
 .btn-trash {
     position: absolute;
     right: 0.5rem;
@@ -221,13 +225,4 @@ textarea {
 
 .check-btn :hover {
     color: var(--secondary-dark);
-}
-
-.logout-icon {
-    cursor: pointer;
-}
-
-.logout-icon :hover {
-    transition: all 100ms;
-    color:#3c28d0
 }

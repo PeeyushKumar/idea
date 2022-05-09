@@ -117,7 +117,7 @@ const App = () => {
               </>
             }
 
-            <div className="new-note-btn" onClick={() => setTakeNoteVisible(!takeNoteVisible)}>
+            <div className="btn new-note-btn" onClick={() => setTakeNoteVisible(!takeNoteVisible)}>
               <FontAwesomeIcon icon={faFeatherAlt}/>
             </div> 
           </>

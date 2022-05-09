@@ -1,6 +1,6 @@
 import {initializeApp} from "firebase/app";
-import {getFirestore} from "firebase/firestore";
-import {getAuth, GoogleAuthProvider} from "firebase/auth";
+import {getFirestore, connectFirestoreEmulator} from "firebase/firestore";
+import {getAuth, connectAuthEmulator} from "firebase/auth";
 
 
 const firebaseConfig = {
@@ -18,6 +18,10 @@ initializeApp(firebaseConfig);
 
 export const db = getFirestore()
 export const auth = getAuth()
-export const provider = new GoogleAuthProvider()
+
+if (window.location.hostname === 'localhost') {
+  connectFirestoreEmulator(db, 'localhost', 8080);
+  connectAuthEmulator(auth, 'http://localhost:9099');
+}
 
 export default firebaseConfig

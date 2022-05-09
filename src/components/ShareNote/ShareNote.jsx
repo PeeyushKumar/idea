@@ -48,7 +48,7 @@ const ShareNote = ({users, title, body, color, altered, author_id, author}) => {
 
     return(
         <>
-            <FontAwesomeIcon icon={faShareAlt} onClick={toggleShareOpen} className="btn-share"  />
+            <FontAwesomeIcon icon={faShareAlt} onClick={toggleShareOpen} className="btn btn-share"  />
 
             <FontAwesomeIcon icon={faPaperPlane} onClick={toggleShareOpen} className={`share-note-plane ${planeFlying && "share-note-plane-fly"}`}  />
             

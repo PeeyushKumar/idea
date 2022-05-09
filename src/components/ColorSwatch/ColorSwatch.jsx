@@ -26,12 +26,12 @@ const ColorSwatch = ({color, handleChangeColor}) => {
         }
     }
 
-    let className = "color-pad ";
+    let className = "btn color-pad ";
     if (swatchOpen) className += "color-open";
 
     return (
         <>
-            { <FontAwesomeIcon className="btn-palette" icon={faPalette} onClick={toggleSwatch} /> }
+            { <FontAwesomeIcon className="btn btn-palette" icon={faPalette} onClick={toggleSwatch} /> }
 
             <>
                 <div className={className+'-1'} style={{backgroundColor: colors.color1}} onClick={() => handleOnClick(colors.color1)}></div>
