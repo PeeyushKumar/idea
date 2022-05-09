@@ -1,11 +1,12 @@
 import { GoogleAuthProvider, signInWithPopup } from "firebase/auth";
-import { auth, provider } from "../../firebase";
+import { auth } from "../../firebase";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faGoogle } from "@fortawesome/free-brands-svg-icons";
 
 import "./SignIn.css"
 
+const provider = new GoogleAuthProvider()
 
 const SignIn = () => {
 

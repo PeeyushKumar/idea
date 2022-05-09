@@ -131,7 +131,7 @@ const Note = ({id, title, body, author, author_id, senderId, senderName, color, 
 
             {
                 hovering && 
-                <FontAwesomeIcon className="btn-trash" icon={faTrash} onClick={() => deleteNote(id)}/> 
+                <FontAwesomeIcon className="btn btn-trash" icon={faTrash} onClick={() => deleteNote(id)}/> 
             }
 
             {
@@ -141,7 +141,7 @@ const Note = ({id, title, body, author, author_id, senderId, senderName, color, 
                     <textarea ref={draftBodyRef} placeholder="Body" className="input-body" value={draftBody} style={{height:draftBodyHeight}} onChange={handleDraftBodyChange} />
                     {
                         hovering &&
-                        <FontAwesomeIcon icon={faCheck} className="check-btn" onClick={handleSaveNote} />
+                        <FontAwesomeIcon icon={faCheck} className="btn check-btn" onClick={handleSaveNote} />
                     }
                 </form> :
                 <>

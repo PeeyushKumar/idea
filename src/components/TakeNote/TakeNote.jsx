@@ -85,12 +85,12 @@ const TakeNote = ({setTakeNoteVisible, closeDisabled, dropShadow}) => {
 
             {
                 closeDisabled ||
-                <FontAwesomeIcon icon={faTimesCircle} className="close-btn" onClick={handleOnClose}/>            
+                <FontAwesomeIcon icon={faTimesCircle} className="btn close-btn" onClick={handleOnClose}/>            
             }
 
             <textarea ref={titleRef} className="input-title" rows="1" placeholder='Title' value={title} style={{height:titleHeight}} onChange={handleTitleChange}></textarea>
             <textarea ref={bodyRef} className="input-body" rows="3" placeholder='Take a note...' value={body} style={{height:bodyHeight}} onInput={handleBodyChange}></textarea>
-            <button type="submit">Save</button>
+            <button className="btn" type="submit">Save</button>
             <ColorSwatch color={color} handleChangeColor={handleChangeColor}/>
         </form>
     )

@@ -1,0 +1,57 @@
+:root {
+    --primary-dark: #3c28d0;
+    --primary-light: #4d3ae3;
+    --secondary-dark: #0b0d1b;
+    --secondary-light: #4a4c5e;
+}
+
+.btn-sign-in {
+    padding: 0.5rem 0.8rem;
+    font-size: 1rem;
+    border: var(--secondary-light) solid 1px;
+    border-radius: 5px;
+    background-color: var(--secondary-light);
+    border: none;
+    color: #fff;
+}
+
+.btn-sign-in:hover {
+    color: var(--secondary-light);
+    background-color: #fff;
+}
+
+.user-panel {
+    position: relative;
+}
+
+.user-panel h1{
+    cursor: pointer;
+    user-select: none;
+}
+
+.account-panel {
+    border: 1px solid #dedede;
+    border-radius: 5px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background: #fff;
+    box-shadow: 0 0 0.4rem rgba(0, 0, 0, 0.2);
+    z-index: -1;
+    margin-top: 3rem;
+    width: 100%;
+}
+
+.panel-option {
+    user-select: none;
+    color: var(--secondary-light);
+    font-size: large;
+    cursor: pointer;
+    padding: 1rem 1rem;
+    border-radius: 5px;
+    width: fit-content;
+}
+
+.panel-option:hover {
+    text-decoration: underline;
+}
