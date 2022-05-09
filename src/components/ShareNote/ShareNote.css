@@ -24,7 +24,7 @@
     background: #ffffff;
     border-radius: 8px 0px 8px 8px;
     border: 1px solid #dedede;
-    box-shadow: 0 0 0.7rem  #ccc;
+    box-shadow: 0 0 0.4rem rgba(0, 0, 0, 0.2);
     animation: share-panel-pop-out 100ms ease-out forwards;
     padding: 0.5rem;
     display: flex;

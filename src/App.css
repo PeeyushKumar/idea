@@ -88,7 +88,7 @@ body {
 }
 
 .note:hover {
-    box-shadow: 0 0 0.7rem  #ccc;
+    box-shadow: 0 0 0.4rem rgba(0, 0, 0, 0.2);
     transition-duration: 0.1s;
 }
 

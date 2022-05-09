@@ -24,7 +24,7 @@
 }
 
 .shadow {
-    box-shadow: 0 0 0.7rem  #ccc;
+    box-shadow: 0 0 0.7rem rgba(0, 0, 0, 0.2);
 }
 
 .take-note button {
